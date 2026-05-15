@@ -33,7 +33,7 @@ my @essential;
 check_option(\@essential, \@ARGVoptions);
 
 # check whether trim_galore and cutadapt properly installed
-`trim_galore -v` or die "\nERROR: Cannot find trim_galore under \$PATH\n\n";
+(system("trim_galore --version >/dev/null 2>&1") == 0) or (system("trim_galore -v >/dev/null 2>&1") == 0) or die "\nERROR: Cannot find trim_galore under \$PATH\n\n";
 `cutadapt --version` or die "\nERROR: Cannot find cutadapt under \$PATH\n\n" if (! $cutadapt);
 
 # initiate multi-process
